@@ -9,6 +9,8 @@ Runs RStudio server, which is available via browser.
 
 Builds [rocker/hadleyverse](https://github.com/rocker-org/hadleyverse), which extends `rocker/rstudio`, and provides `rmarkdown`, `knitr`, `pandoc`, and latex tools for authoring papers and presentations in the RStudio environment. Also provides popular packages by Hadley Wickham such as `ggplot2`, `dplyr`, `tidyr`, `devtools`, `httr`, and others.
 
+##### Building
+
 ##### Running
 ```shell
 docker run --rm -v "$(pwd)":/home/r -w /home/r -p 8787:8787 -e ROOT=TRUE -ti rocker/hadleyverse
@@ -27,12 +29,12 @@ docker machine ip default
 
 Launch an *R* terminal session instead of using *RStudio*:
 ```shell
-docker run --rm -it --user docker rocker/hadleyverse /usr/bin/R
+docker run --rm -v "$(pwd)":/home/r -w /home/r -it rocker/hadleyverse /usr/bin/R
 ```
 
 Launch plain bash session:
 ```shell
-docker run --rm -it --user docker rocker/hadleyverse /bin/bash
+docker run --rm -v "$(pwd)":/home/r -w /home/r -it rocker/hadleyverse /bin/bash
 ```
 
 ##### More info

@@ -5,9 +5,9 @@ Collection of Dockerfiles for various uses
   * [Dockerfile.RStudio](#rstudio)
 
 ## RStudio
-Run RStudio server using the browser. This will :
-* mount the current folder inside the container at `/home/r` and change dir;
-* start the *RStudio* at port `8787`
+Runs RStudio server, which is available via browser.
+
+Builds [rocker/hadleyverse](https://github.com/rocker-org/hadleyverse), which extends `rocker/rstudio`, and provides `rmarkdown`, `knitr`, `pandoc`, and latex tools for authoring papers and presentations in the RStudio environment. Also provides popular packages by Hadley Wickham such as `ggplot2`, `dplyr`, `tidyr`, `devtools`, `httr`, and others.
 
 ##### Running
 ```shell

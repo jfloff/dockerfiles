@@ -4,6 +4,7 @@ Collection of Dockerfiles for various uses
 
   * [Dockerfile.RStudio](#rstudio)
   * [Dockerfile.Jekyll](#jekyll)
+  * [Play Framework](#playframework)
 
 
 ## RStudio
@@ -62,6 +63,19 @@ docker machine ip default
 ##### More info
 * [jekyll/jekyll:builder](https://github.com/jekyll/docker)
 
+
+## Play Framework
+Builds [dordoka/play-framework](https://github.com/dordoka/play-framework) docker image for Play Framework.
+
+##### Running
+```shell
+docker run --rm -it -v "$(pwd)/<app>:/home/play/Code" -p 9000:9000 -p 9999:9999 -p 8888:8888 dordoka/play-framework
+```
+
+Once inside the shell run:
+```shell
+activator run
+```
 
 ## License
 [MIT License](LICENSE)

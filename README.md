@@ -4,7 +4,7 @@ Collection of Dockerfiles for various uses
 
   * [Dockerfile.RStudio](#rstudio)
   * [Dockerfile.Jekyll](#jekyll)
-  * [Play Framework](#playframework)
+  * [Dockerfile.PlayFramework](#playframework)
 
 
 ## RStudio

@@ -2,10 +2,32 @@
 
 Collection of Dockerfiles for various uses
 
+  * [Dockerfile.Spark](#spark)
   * [Dockerfile.RStudio](#rstudio)
   * [Dockerfile.Jekyll](#jekyll)
   * [Dockerfile.PlayFramework](#playframework)
 
+
+## Spark
+Builds [gettyimages/docker-spark](https://github.com/gettyimages/docker-spark) Runs Spark in local mode with Scala and SBT installed.
+
+##### Building
+Download [Dockerfile](Dockerfile.spark) to your local machine and build the image:
+
+```shell
+docker build --rm -t jfloff/spark .
+```
+
+##### Running
+```shell
+docker run --rm -v "$(pwd):/home/app" -w /home/app -it -p 4040:4040 jfloff/spark bash
+```
+
+Inside the image you can run `spark-shell`, `spark-submit`, amongst others. Example of `spark-submit` Scala class:
+```shell
+spark-submit --class "Main" --driver-memory 2G --master local target/main.jar <args>
+```
+*Note:* `driver-memory` is used to increase memory allocated into a spark-submit job
 
 ## RStudio
 Runs RStudio server, which is available via browser.

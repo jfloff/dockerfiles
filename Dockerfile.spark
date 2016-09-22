@@ -1,0 +1,33 @@
+FROM gettyimages/spark
+
+MAINTAINER João Loff <jfloff@gsd.inesc-id.pt>
+
+# Install needed packages
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    vim \
+  && rm -rf /var/lib/apt/lists/*
+
+# Install SCALA
+# taken from: https://github.com/hseeberger/scala-sbt/blob/master/Dockerfile
+ENV SCALA_VERSION 2.11.8
+
+# Piping curl directly in tar
+RUN \
+  curl -fsL http://downloads.typesafe.com/scala/$SCALA_VERSION/scala-$SCALA_VERSION.tgz | tar xfz - -C /root/ && \
+  echo >> /root/.bashrc && \
+  echo 'export PATH=~/scala-$SCALA_VERSION/bin:$PATH' >> /root/.bashrc
+
+# Install sbt
+ENV SBT_VERSION 0.13.12
+ENV SBT_HOME /usr/local/sbt
+ENV PATH ${PATH}:${SBT_HOME}/bin
+
+RUN curl -sL "http://dl.bintray.com/sbt/native-packages/sbt/$SBT_VERSION/sbt-$SBT_VERSION.tgz" | gunzip | tar -x -C /usr/local && \
+    echo -ne "- with sbt $SBT_VERSION\n" >> /root/.built
+
+# run sbt to cache initial packages
+RUN sbt
+
+# UPDATE Spark conf to log only WARNs
+RUN cp $SPARK_HOME/conf/log4j.properties.template $SPARK_HOME/conf/log4j.properties && \
+    sed -i '/log4j.rootCategory=INFO, console/c\log4j.rootCategory=WARN, console' $SPARK_HOME/conf/log4j.properties

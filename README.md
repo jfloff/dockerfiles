@@ -11,14 +11,14 @@ Collection of Dockerfiles for various uses
 ## Spark
 Builds [gettyimages/docker-spark](https://github.com/gettyimages/docker-spark) Runs Spark in local mode with Scala and SBT installed.
 
-##### Building
+### Building
 Download [Dockerfile](Dockerfile.spark) to your local machine and build the image:
 
 ```shell
 docker build --rm -t jfloff/spark .
 ```
 
-##### Running
+### Running
 ```shell
 docker run --rm -v "$(pwd):/home/app" -w /home/app -it -p 4040:4040 jfloff/spark bash
 ```
@@ -34,7 +34,7 @@ Runs RStudio server, which is available via browser.
 
 Builds [rocker/hadleyverse](https://github.com/rocker-org/hadleyverse), which extends `rocker/rstudio`, and provides `rmarkdown`, `knitr`, `pandoc`, and latex tools for authoring papers and presentations in the RStudio environment. Also provides popular packages by Hadley Wickham such as `ggplot2`, `dplyr`, `tidyr`, `devtools`, `httr`, and others.
 
-##### Running
+### Running
 ```shell
 docker run --rm -v "$(pwd)":/home/r -w /home/r -p 8787:8787 -e ROOT=TRUE -ti rocker/hadleyverse
 ```
@@ -60,7 +60,7 @@ Launch plain bash session:
 docker run --rm -v "$(pwd)":/home/r -w /home/r -it rocker/hadleyverse /bin/bash
 ```
 
-##### More info
+### More info
 * [R and Docker together](https://benmarwick.github.io/UW-eScience-docker-for-reproducible-research/#18)
 * [rocker/rstudio docker image](https://github.com/rocker-org/rocker/wiki/Using-the-RStudio-image)
 
@@ -70,7 +70,7 @@ Runs Jekyll blog generator, which is available via browser.
 
 Builds [jekyll/jekyll:builder](https://github.com/jekyll/docker), which is targeted at building  Jekyll sites.
 
-##### Running
+### Running
 ```shell
 docker run --rm --label=jekyll --volume=$(pwd):/srv/jekyll \
   -it -p $(docker-machine ip `docker-machine active`):4000:4000 \
@@ -82,14 +82,14 @@ Browse to `https://<docker-ip>:8787` so you can view your generated site. You ca
 docker machine ip default
 ```
 
-##### More info
+### More info
 * [jekyll/jekyll:builder](https://github.com/jekyll/docker)
 
 
 ## Play Framework
 Builds [dordoka/play-framework](https://github.com/dordoka/play-framework) docker image for Play Framework.
 
-##### Running
+### Running
 ```shell
 docker run --rm -it -v "$(pwd)/<app>:/home/play/Code" -p 9000:9000 -p 9999:9999 -p 8888:8888 dordoka/play-framework
 ```
